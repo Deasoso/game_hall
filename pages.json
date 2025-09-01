@@ -12,7 +12,7 @@
 		{
 			"path": "pages/index/home",
 			"style": {
-				"navigationBarTitleText": "uni-app",
+				"navigationBarTitleText": "首页",
 				"app-plus": {  
 					"titleNView": false
 				}  
@@ -28,6 +28,12 @@
 			"path": "pages/index/register",
 			"style": {
 				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/index/forget",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
 			}
 		},
 		{

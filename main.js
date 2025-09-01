@@ -4,6 +4,7 @@ import App from './App'
 import Vue from 'vue'
 import i18n from '@/common/lang/lang.js'
 import './uni.promisify.adaptor'
+console.log('1231321')
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
@@ -14,6 +15,7 @@ app.$mount()
 // #endif
 
 // #ifdef VUE3
+console.log('122231321')
 import { createSSRApp } from 'vue'
 export function createApp() {
   const app = createSSRApp(App)

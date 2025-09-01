@@ -74,7 +74,7 @@
 			   </view>
             </view>
             <view class=" ft14 flex alcenter between">
-                <navigator url="forgetPwd" class="green1">{{$t('login').forget_pwd}}</navigator>
+                <navigator class="green1" @click="goforget">{{$t('login').forget_pwd}}</navigator>
             </view>
         </view>
     </view>
@@ -115,13 +115,13 @@ export default {
         //     title: this.$t('login').login
         // })
         // this.getCountry();
-        // if (uni.getStorageSync('isRemember') == 0) {
-        //     this.isRemember = false;
-        // } else {
-        //     this.isRemember = true;
-        //     this.user_string = uni.getStorageSync('userString');
-        //     this.password = uni.getStorageSync('userPwd');
-        // }
+        if (uni.getStorageSync('isRemember') == 0) {
+            this.isRemember = false;
+        } else {
+            this.isRemember = true;
+            this.user_string = uni.getStorageSync('userString');
+            this.password = uni.getStorageSync('userPwd');
+        }
         // this.lang = uni.getStorageSync('lang');
         // this.$utils.initData({ url: 'default/setting', data: { key: 'login_use_sms' } }, (res) => {
         //     this.isShowCode = res == 1 ? true : false;
@@ -152,6 +152,11 @@ export default {
 	    }
 	},
     methods: {
+        goforget(){
+            uni.navigateTo({
+			    url: '/pages/index/forget'
+			})
+        },
 		changeloginActive(e){
 			this.loginActive = e;
 		},
@@ -269,6 +274,10 @@ export default {
                 success: (res) => {
                     console.log('POST 请求成功', res);
                     if(res.data.code == 200){
+                        if (this.isRemember) {
+                            uni.setStorageSync('userString', this.user_string);
+                            uni.setStorageSync('userPwd', this.password);
+                        }
                         uni.navigateTo({
                             url: '/'
                         })
@@ -323,10 +332,6 @@ export default {
             //     uni.setStorageSync('token', res);
             //     uni.setStorageSync('accountNumber', this.user_string);
             //     uni.setStorageSync('codeId', this.area_code);
-            //     if (this.isRemember) {
-            //         uni.setStorageSync('userString', this.user_string);
-            //         uni.setStorageSync('userPwd', this.password);
-            //     }
             //     setTimeout(() => {
             //         uni.reLaunch({
             //             url: '/pages/home/home'

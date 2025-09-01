@@ -184,7 +184,7 @@ export default {
     gogamein(gameid){
       console.log('111')
       uni.navigateTo({
-			    url: '/?gameid=' + gameid,
+			    url: '/pages/index/home?gameid=' + gameid,
           success: () => {
             uni.navigateBack();
           }
@@ -220,10 +220,11 @@ export default {
       uni.request({
           url: 'http://62.60.232.70:8888/api/games', // 接口地址
           method: 'POST', // 请求方法
-          data: {},
+          data: {
+            type_id: 1
+          },
           header: {
               'Content-Type': 'application/json' // 如果需要以 JSON 格式发送数据
-              
           },
           success: (res) => {
             if(res.data.code == 200){
