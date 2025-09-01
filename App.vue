@@ -41,8 +41,8 @@ view {
 }
 uni-view {
     box-sizing: border-box;
-    font-size: 28upx;
-    line-height: 2.2;
+    font-size: 14px;
+    line-height: 2;
 }
 .uni-padding-wrap {
     width: 100%;

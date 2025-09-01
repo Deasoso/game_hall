@@ -268,10 +268,19 @@ export default {
                 },
                 success: (res) => {
                     console.log('POST 请求成功', res);
-                    uni.navigateTo({
-                        url: '/'
-                    })
-                    localStorage.setItem('hame_hall_userinfo', res.data.data.token);
+                    if(res.data.code == 200){
+                        uni.navigateTo({
+                            url: '/'
+                        })
+                        localStorage.setItem('hame_hall_userinfo', res.data.data.token);
+                    }else{
+                        uni.showModal({
+                            title: '提示',
+                            content: '登录失败，用户名或密码错误',
+                            confirmText: '确定',
+                        });
+                    }
+                    
                 },
                 fail: (err) => {
                     console.log('POST 请求失败', err);

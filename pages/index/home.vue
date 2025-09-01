@@ -10,13 +10,13 @@
           </view> -->
       <view class="ptb10 w100 tc flex alcenter between absolute bgPart head pr10">
         <view class="avatarpic" @click="gologin">
-          <image src="http://aiduihua.deaso40.com/xiaoyuan/Vector.png"  style="width: 16px;height: 16px;"/>
+          <image src="http://aiduihua.deaso40.com/xiaoyuan/Vector.png"  style="width: 32px;height: 32px;"/>
         </view>
-        <image src="/static/logo.png" @click="gomine" style="width: 56upx;height:56upx" class="leftshow"/>
+        <image src="/static/logo.png" @click="gomine" style="width: 32px;height:32px" class="leftshow"/>
         <view class="posRelt">
           <view class="flex alcenter" @tap="isshowlang = !isshowlang">
-            <text>{{ languages[lang].name }}</text>
-            <image :src="languages[lang].img" class="wt15 h12 ml5" />
+            <text>{{ languages[lang] ? languages[lang].name : '中文' }}</text>
+            <image :src="languages[lang] ? languages[lang].img : ''" class="wt15 h12 ml5" />
           </view>
           <view
               class="abstrot bggray plr8 wt100 radius4"
@@ -36,33 +36,72 @@
         </view>
       </view>
       <view class='center leftshow'>
-        <view class='center-list'>
-          <view class="pics">
-            <scroll-view class="gundong" scroll-y v-for="(item,index) in navLeft" :key="index">
-              <view :class="{'active':isActive === index}" @click="checked(index)">
-                {{item.tit}}
-              </view>
-            </scroll-view>
+        <scroll-view scroll-y class='center-list-opened' v-if="leftopen">
+          <view class="gundong">
+            <image src="http://aiduihua.deaso40.com/xiaoyuan/Vector.png" @click="leftopen = !leftopen" style="width: 32px;height: 32px;margin-left:16px;margin-top:16px;"/>
           </view>
-        </view>
+          <view v-for="(item,index) in navLeft" :key="index" class="gundong">
+            <view :class="{'active':isActive === index}" @click="checked(index)">
+              <image src="http://aiduihua.deaso40.com/xiaoyuan/Vector.png" style="width: 32px;height: 32px;margin-left:8px;margin-top:16px;"/>
+            </view>
+          </view>
+        </scroll-view>
+        <scroll-view scroll-y class='center-list' v-else>
+          <view class="gundong">
+            <image src="http://aiduihua.deaso40.com/xiaoyuan/Vector.png" @click="leftopen = !leftopen" style="width: 32px;height: 32px;margin-left:16px;margin-top:16px;"/>
+          </view>
+          <view v-for="(item,index) in navLeft" :key="index" class="gundong">
+            <view :class="{'active':isActive === index}" @click="checked(index)">
+              <image src="http://aiduihua.deaso40.com/xiaoyuan/Vector.png" style="width: 32px;height: 32px;margin-left:8px;margin-top:16px;"/>
+            </view>
+          </view>
+        </scroll-view>
       </view>
-      <view class="allgame">
-        <view v-for="(item, index) in gameList" :key="index1">
-          <image :src="'http://aiduihua.deaso40.com/xiaoyuan/Vector.png'" class="gamepic" @click="gogamein"/>
-        </view>
+      <view class='center tabs'>
+        <scroll-view scroll-y class='center-list-full' v-if="leftopen">
+          <view class="gundong">
+            <image src="http://aiduihua.deaso40.com/xiaoyuan/Vector.png" @click="leftopen = !leftopen" style="width: 32px;height: 32px;margin-left:16px;margin-top:16px;"/>
+          </view>
+          <view v-for="(item,index) in navLeft" :key="index" class="gundong">
+            <view :class="{'active':isActive === index}" @click="checked(index)">
+              <image src="http://aiduihua.deaso40.com/xiaoyuan/Vector.png" style="width: 32px;height: 32px;margin-left:8px;margin-top:16px;"/>
+            </view>
+          </view>
+        </scroll-view>
       </view>
-      <unitabs class="tabs" currentIndex="3"></unitabs>
+      <view v-if="showgame">
+        <iframe id="game" title="game launcher" class="gameview" frameborder="0" src="https://demogamesfree.eotofjxixi.net/gs2c/openGame.do?gameSymbol=vs15avsbath&amp;lang=zh&amp;cur=USD&amp;lobbyUrl=https://stake.com/casino/home&amp;cashierUrl=https://stake.com/casino/home?tab=deposit&amp;currency=btc&amp;modal=wallet&amp;stylename=rare_stake&amp;jurisdiction=99&amp;treq=gVhadvNW9Fx65Nz3Kt1v4pKJRKT3EbseiT7aFor7qPrujnGrlJbFU4zwqTiyJkt7&amp;isGameUrlApiCalled=true&amp;userId=demo" allow=""></iframe>
+      </view>
+      <view v-else>
+        <view class="allgame" :style="screenWidth > 768 ? leftopen ? 'margin-left: 160px' : 'margin-left: 64px' : leftopen ? 'display:none' : 'margin-left: 0px;'">
+          <view v-for="(item, index) in gameList" :key="index1">
+            <image :src="'http://aiduihua.deaso40.com/xiaoyuan/Vector.png'" class="gamepic" @click="gogamein(item.ID)"/>
+          </view>
+        </view> 
+      </view>
+      <div class="tabs">
+        <uni-tabbar class="uni-tabbar-bottom" >
+          <div class="uni-tabbar" style="background-color: rgb(33, 37, 47); backdrop-filter: none;" :class="{ light2: true}">
+            <div class="uni-tabbar-border" style="background-color: rgba(0, 0, 0, 0.33);"></div>
+            <div class="uni-tabbar__item"  v-for="(item,index) in tabList" :key="item.id" @tap="switchTab(item.id)"><!---->
+              <div class="uni-tabbar__bd" style="height: 50px;">
+                <div class="uni-tabbar__icon" style="width: 24px; height: 24px;">
+                  <img :src="(currentTabIndex!=item.id) ? '/h5/static/footer/'+item.icon+'0.png': '/h5/static/footer/'+item.icon+'1.png'" >
+                </div>
+                <div class="uni-tabbar__label" :style="currentTabIndex==item.id?'color: rgb(24, 129, 210); font-size: 10px; line-height: normal; margin-top: 3px;'
+                :'color: rgb(162, 166, 165); font-size: 10px; line-height: normal; margin-top: 3px;'"> {{ item.text }} <!---->
+                </div>
+              </div>
+            </div>
+          </div>
+        </uni-tabbar>
+      </div>
     </view>
   </view>
 </template>
 
 <script>
-import unitabs from '../../components/uni-tabs.vue';
-
 export default {
-  components: {
-    unitabs,
-  },
   data() {
     return {
       isshowlang: false,
@@ -77,7 +116,7 @@ export default {
         // th: { name: 'ภาษาไทย', img: '/static/image/th.png' },
         // vi: { name: 'Việt Nam', img: '/static/image/vi.png' },
       },
-      lang: '',
+      lang: 'zh',
       isActive: 0,
       navLeft: [
         {index:0,tit:"种类1"},
@@ -94,24 +133,63 @@ export default {
         {index:11,tit:"种类12"},
         {index:12,tit:"种类13"}
       ],
-      gameList: []
+      gameList: [],
+      leftopen: false,
+      screenWidth: null,
+
+      tabList: [
+          {
+              id: 1,
+              icon: 'index',
+              text: this.$t('market.home'),
+
+          },
+        {
+          id: 2,
+          icon: 'mine',
+          text: this.$t('assets.assets')
+        },
+      ],
+      currentTabIndex: this.current,
+      showgame: false
     };
   },
   computed: {
     
   },
-  onLoad() {
+  onLoad(option) {
     this.lang = uni.getStorageSync('lang') || 'zh';
+    this.screenWidth = document.body.clientWidth;
+    window.onresize = () => {
+      this.screenWidth = document.body.clientWidth;
+    }
+    console.log(option.gameid);
+    if(option.gameid){
+      this.showgame = true;
+    }
   },
   onShow() {
     this.getlist();
   },
   methods: {
-    gogamein(){
+    switchTab(index){
+        this.currentTabIndex = index
+        // this.$emit('click', index)
+      if(index==1){
+        this.leftopen = !this.leftopen;
+      }else if(index==2){
+        parent.location.href='/h5/#/pages/index/mine'
+      }
+    },
+    gogamein(gameid){
       console.log('111')
       uni.navigateTo({
-			    url: '/pages/index/gamein'
+			    url: '/?gameid=' + gameid,
+          success: () => {
+            uni.navigateBack();
+          }
 			})
+      this.$forceUpdate();
     },
     gologin() {
       console.log('111')
@@ -148,7 +226,15 @@ export default {
               
           },
           success: (res) => {
-            this.gameList = res.data.data.games;
+            if(res.data.code == 200){
+              this.gameList = res.data.data.games;
+            }else{
+              uni.showModal({
+                  title: '提示',
+                  content: '发生了错误',
+                  confirmText: '确定',
+              });
+            }
               console.log('POST 请求成功', res);
               // uni.navigateTo({
               //     url: '/'
@@ -179,8 +265,8 @@ export default {
 .avatarpic{
   margin-top: 2px;
   margin-left: 12px;
-  width: 16px;
-  height: 16px;
+  width: 32px;
+  height: 32px;
 }
 page {
   height:100%;
@@ -191,22 +277,30 @@ page {
   position:relative;
 }
 .center-list{
-  width: 100px;
-  height: 100%;
+  width: 64px;
+  height:100%;
+  background-color: #333;
   position: fixed;
-  overflow: auto;
 }
-.pics {
-  width:100%;
-  height:auto;
+.center-list-opened{
+  width: 160px;
+  height:100%;
+  background-color: #333;
+  position: fixed;
+}
+.center-list-full{
+  width: 100%;
+  height:100%;
+  background-color: #333;
+  position: fixed;
 }
 .gundong {
-  width: 100px;
-  height: 100px;
+  width: 64px;
+  height: 64px;
 }
 .gundong view {
-  height: 100px;
-  line-height: 100px;
+  height: 64px;
+  line-height: 64px;
   text-align: center;
 /*  background-color: #f1f1f1; */
   font-size:28px;
@@ -221,6 +315,11 @@ page {
   width: 48px;
   height: 48px;
   margin: 12px; 
+}
+.gameview{
+  height: 100%; 
+  width: 100%;
+  min-height: 500px;
 }
 .allgame{
   display: flex;

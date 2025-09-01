@@ -9,7 +9,7 @@
           <image class="choose-avatar" :src="avatarUrl"></image>
         </button> 
       </div>
-      <p class="contentTip">点击上传头像</p>
+      <p class="contentTip">个人页面建设中</p>
       <view class="cellborder">
         <u-cell 
           size="large"

@@ -115,9 +115,15 @@ export default {
                     'Content-Type': 'application/json' // 如果需要以 JSON 格式发送数据
                 },
                 success: (res) => {
-                    console.log(this.get_code);
-                    console.log('POST 请求成功', res);
-                    this.get_code = res.data.data.code;
+                    if(res.data.code == 200){
+                        this.get_code = res.data.data.code;
+                    }else{
+                        uni.showModal({
+                            title: '提示',
+                            content: '发生了错误',
+                            confirmText: '确定',
+                        });
+                    }
                 },
                 fail: (err) => {
                     console.log('POST 请求失败', err);
@@ -139,11 +145,20 @@ export default {
                     'Content-Type': 'application/json' // 如果需要以 JSON 格式发送数据
                 },
                 success: (res) => {
-                    console.log(this.get_code);
-                    console.log('POST 请求成功', res.data);
-                    uni.navigateTo({
-                        url: '/pages/index/login'
-                    })
+                    if(res.data.code == 200){
+                        console.log(this.get_code);
+                        console.log('POST 请求成功', res.data);
+                        uni.navigateTo({
+                            url: '/pages/index/login'
+                        })
+                    }else{
+                        uni.showModal({
+                            title: '提示',
+                            content: '发生了错误',
+                            confirmText: '确定',
+                        });
+                    }
+                    
                 },
                 fail: (err) => {
                     console.log('POST 请求失败', err);
