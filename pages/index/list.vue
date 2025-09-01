@@ -69,8 +69,7 @@
           </view>
         </scroll-view>
       </view>
-      <div :style="screenWidth > 768 ? leftopen ? 'margin-left: 160px' : 'margin-left: 64px' : leftopen ? 'display:none' : 'margin-left: 0px;'">首页内容</div>
-      <!-- <view v-if="showgame">
+      <view v-if="showgame">
         <iframe id="game" title="game launcher" class="gameview" frameborder="0" src="https://demogamesfree.eotofjxixi.net/gs2c/openGame.do?gameSymbol=vs15avsbath&amp;lang=zh&amp;cur=USD&amp;lobbyUrl=https://stake.com/casino/home&amp;cashierUrl=https://stake.com/casino/home?tab=deposit&amp;currency=btc&amp;modal=wallet&amp;stylename=rare_stake&amp;jurisdiction=99&amp;treq=gVhadvNW9Fx65Nz3Kt1v4pKJRKT3EbseiT7aFor7qPrujnGrlJbFU4zwqTiyJkt7&amp;isGameUrlApiCalled=true&amp;userId=demo" allow=""></iframe>
       </view>
       <view v-else>
@@ -79,7 +78,7 @@
             <image :src="'http://aiduihua.deaso40.com/xiaoyuan/Vector.png'" class="gamepic" @click="gogamein(item.ID)"/>
           </view>
         </view> 
-      </view> -->
+      </view>
       <div class="tabs">
         <uni-tabbar class="uni-tabbar-bottom" >
           <div class="uni-tabbar" style="background-color: rgb(33, 37, 47); backdrop-filter: none;" :class="{ light2: true}">
@@ -118,7 +117,7 @@ export default {
         // vi: { name: 'Việt Nam', img: '/static/image/vi.png' },
       },
       lang: 'zh',
-      isActive: 0,
+      isActive: 1,
       navLeft: [
         {index:0,img:'http://aiduihua.deaso40.com/xiaoyuan/home1.png',title:"首页"},
         {index:1,img:'http://aiduihua.deaso40.com/xiaoyuan/shop1.png',title:"列表"},

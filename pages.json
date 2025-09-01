@@ -19,6 +19,24 @@
 			}
 		},
 		{
+			"path": "pages/index/list",
+			"style": {
+				"navigationBarTitleText": "游戏列表",
+				"app-plus": {  
+					"titleNView": false
+				}  
+			}
+		},
+		{
+			"path": "pages/index/gamein",
+			"style": {
+				"navigationBarTitleText": "游戏内容",
+				"app-plus": {  
+					"titleNView": false
+				}  
+			}
+		},
+		{
 			"path": "pages/index/login",
 			"style": {
 				"navigationBarTitleText": "登录"
@@ -37,15 +55,9 @@
 			}
 		},
 		{
-			"path": "pages/index/mine",
+			"path": "pages/user/mine",
 			"style": {
 				"navigationBarTitleText": "我的"
-			}
-		},
-		{
-			"path": "pages/index/gamein",
-			"style": {
-				"navigationBarTitleText": "游戏详细页面"
 			}
 		}
 	],
