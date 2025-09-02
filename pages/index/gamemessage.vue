@@ -70,7 +70,11 @@
         </scroll-view>
       </view>
       <view v-if="showgame">
-        <iframe id="game" title="game launcher" class="gameview" frameborder="0" src="https://demogamesfree.eotofjxixi.net/gs2c/openGame.do?gameSymbol=vs15avsbath&amp;lang=zh&amp;cur=USD&amp;lobbyUrl=https://stake.com/casino/home&amp;cashierUrl=https://stake.com/casino/home?tab=deposit&amp;currency=btc&amp;modal=wallet&amp;stylename=rare_stake&amp;jurisdiction=99&amp;treq=gVhadvNW9Fx65Nz3Kt1v4pKJRKT3EbseiT7aFor7qPrujnGrlJbFU4zwqTiyJkt7&amp;isGameUrlApiCalled=true&amp;userId=demo" allow=""></iframe>
+        游戏详情
+        <view
+          class="mt10 bgGreen radius4 ptb10 white ft14 tc mb10"
+          @tap="gogamein(1)"
+        >{{'试玩'}}</view>
       </view>
       <view v-else>
         <view class="allgame" :style="screenWidth > 768 ? leftopen ? 'margin-left: 160px' : 'margin-left: 64px' : leftopen ? 'display:none' : 'margin-left: 0px;'">

@@ -169,14 +169,20 @@ export default {
       if(index==1){
         this.leftopen = !this.leftopen;
       }else if(index==2){
-        parent.location.href='/h5/#/pages/index/mine'
+        parent.location.href='/h5/#/pages/user/mine'
       }
     },
     gogamein(gameid){
       console.log('111')
-      uni.navigateTo({
-			    url: '/pages/index/gamein?gameid=' + gameid,
-			})
+      if(this.screenWidth > 768){
+        uni.navigateTo({
+          url: '/pages/index/gamein?gameid=' + gameid,
+        })
+      }else{
+        uni.navigateTo({
+          url: '/pages/index/gamemessage?gameid=' + gameid,
+        })
+      }
     },
     gologin() {
       console.log('111')
@@ -187,7 +193,7 @@ export default {
     gomine() {
       console.log('111')
       uni.navigateTo({
-			    url: '/pages/index/mine'
+			    url: '/pages/user/mine'
 			})
     },
     changeLang(lang) {
@@ -240,7 +246,7 @@ export default {
               // uni.navigateTo({
               //     url: '/'
               // })
-              // localStorage.setItem('hame_hall_userinfo', res.data.data.token);
+              // localStorage.setItem('game_hall_userinfo', res.data.data.token);
           },
           fail: (err) => {
               console.log('POST 请求失败', err);

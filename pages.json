@@ -5,7 +5,8 @@
 		// 	"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
 		// }
 		"custom": {
-			"uni-easyinput": "@dcloudio/uni-ui/lib/uni-easyinput/uni-easyinput.vue"
+			"uni-easyinput": "@dcloudio/uni-ui/lib/uni-easyinput/uni-easyinput.vue",
+			"uni-cell": "@dcloudio/uni-ui/lib/uni-cell/uni-cell.vue"
 		}
 	},
 	"pages": [
@@ -30,7 +31,16 @@
 		{
 			"path": "pages/index/gamein",
 			"style": {
-				"navigationBarTitleText": "游戏内容",
+				"navigationBarTitleText": "游戏试玩",
+				"app-plus": {  
+					"titleNView": false
+				}  
+			}
+		},
+		{
+			"path": "pages/index/gamemessage",
+			"style": {
+				"navigationBarTitleText": "游戏详情",
 				"app-plus": {  
 					"titleNView": false
 				}  

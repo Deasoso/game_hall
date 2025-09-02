@@ -281,7 +281,7 @@ export default {
                         uni.navigateTo({
                             url: '/'
                         })
-                        localStorage.setItem('hame_hall_userinfo', res.data.data.token);
+                        localStorage.setItem('game_hall_userinfo', res.data.data.token);
                     }else{
                         uni.showModal({
                             title: '提示',

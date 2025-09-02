@@ -87,7 +87,7 @@ import { mapState } from 'vuex';
               }else if(index==4){
                 parent.location.href='/h5/#/pages/lever/lever'
               }else if(index==5){
-                parent.location.href='/h5/#/pages/index/mine'
+                parent.location.href='/h5/#/pages/user/mine'
               }
             }
         },
